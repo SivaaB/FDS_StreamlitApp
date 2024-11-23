@@ -47,10 +47,10 @@ def train_models(X, y):
 @st.cache_data
 def load_datasets():
     try:
-        breast_cancer = pd.read_csv("/Users/sivaab/Desktop/StreamlitApp/CSV/breast-cancer.csv")
-        diabetes = pd.read_csv("/Users/sivaab/Desktop/StreamlitApp/CSV/diabetes_prediction_dataset.csv")
-        heart = pd.read_csv("/Users/sivaab/Desktop/StreamlitApp/CSV/heart2.csv")
-        lung = pd.read_csv("/Users/sivaab/Desktop/StreamlitApp/CSV/survey lung cancer.csv")
+        breast_cancer = pd.read_csv("StreamlitApp/CSV/breast-cancer.csv")
+        diabetes = pd.read_csv("StreamlitApp/CSV/diabetes_prediction_dataset.csv")
+        heart = pd.read_csv("StreamlitApp/CSV/heart2.csv")
+        lung = pd.read_csv("StreamlitApp/CSV/survey lung cancer.csv")
         
         # Print column names for debugging
         print("Lung Cancer Dataset Columns:", lung.columns.tolist())
