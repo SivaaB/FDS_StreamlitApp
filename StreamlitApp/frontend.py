@@ -11,7 +11,7 @@ import numpy as np
 
 # Page config
 st.set_page_config(
-    page_title="Health Risk Assessment",
+    page_title="Health Risk Assessment App",
     page_icon="👨‍⚕️",
     layout="wide"
 )
@@ -108,9 +108,9 @@ st.markdown("""
 This application helps assess your risk for various health conditions using machine learning models.
 Upload your medical parameters and get instant risk assessments for:
 - 🎗️ Breast Cancer
-- 💉 Diabetes
-- ❤️ Heart Disease
 - 🫁 Lung Cancer
+- ❤️ Heart Disease
+- 💉 Diabetes
 """)
 
 # Load all datasets
@@ -120,70 +120,50 @@ breast_cancer, diabetes, heart, lung = load_datasets()
 st.sidebar.header("Navigation")
 condition = st.sidebar.selectbox(
     "Select Health Condition", 
-    ["Overview", "Breast Cancer", "Diabetes", "Heart Disease", "Lung Cancer"]
+    ["Data - Visualization Overview", "Breast Cancer", "Lung Cancer", "Heart Disease", "Diabetes"]
 )
 
 # Overview page
 if condition == "Overview":
     st.header("Health Risk Statistics")
     
-    col1, col2 = st.columns(2)
-    
-    with col1:
-        st.subheader("Disease Distribution Across Datasets")
-        fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(12, 12))
-        
-        # Breast Cancer
-        sns.countplot(data=breast_cancer, x='diagnosis', ax=ax1, hue='diagnosis', 
-                     palette=['lightblue', 'salmon'], legend=False)
-        ax1.set_title("Breast Cancer Cases (0=Benign, 1=Malignant)")
-        
-        # Diabetes
-        sns.countplot(data=diabetes, x='diabetes', ax=ax2, hue='diabetes',
-                     palette=['lightblue', 'salmon'], legend=False)
-        ax2.set_title("Diabetes Cases")
-        
-        # Heart Disease
-        sns.countplot(data=heart, x='HeartDisease', ax=ax3, hue='HeartDisease',
-                     palette=['lightblue', 'salmon'], legend=False)
-        ax3.set_title("Heart Disease Cases")
-        
-        # Lung Cancer
-        sns.countplot(data=lung, x='LUNG_CANCER', ax=ax4, hue='LUNG_CANCER',
-                     palette=['lightblue', 'salmon'], legend=False)
-        ax4.set_title("Lung Cancer Cases")
-        
-        plt.tight_layout()
-        st.pyplot(fig)
+    col2 = st.columns(1)
+
+    condition2 = st.sidebar.selectbox(
+    "Select Health Condition", 
+    ["Breast Cancer", "Lung Cancer", "Heart Disease", "Diabetes"]
+    )
+
+    condition3 = st.sidebar.selectbox(
+    "Select Classification Model", 
+    ["Logisitic Regression", "Random Forest", "XGBoost"]
+    )
     
     with col2:
-        st.subheader("Risk Factors Analysis")
+        st.subheader("Analysis")
         
-        # Display correlation heatmaps for each condition
-        tab1, tab2, tab3, tab4 = st.tabs(["Breast Cancer", "Diabetes", "Heart Disease", "Lung Cancer"])
-        
-        with tab1:
+        if condition2 == "Breast Cancer" & condition3 == "Logistic Regression":
             fig, ax = plt.subplots(figsize=(10, 8))
             selected_features = ['radius_mean', 'texture_mean', 'perimeter_mean', 'area_mean', 'diagnosis']
             sns.heatmap(breast_cancer[selected_features].corr(), annot=True, cmap='coolwarm')
             plt.title("Breast Cancer Features Correlation")
             st.pyplot(fig)
-        
-        with tab2:
+
+        elif condition2 == "Lung Cancer" & condition3 == "Logistic Regression":
             fig, ax = plt.subplots(figsize=(10, 8))
             selected_features = ['age', 'bmi', 'blood_glucose_level', 'diabetes']
             sns.heatmap(diabetes[selected_features].corr(), annot=True, cmap='coolwarm')
             plt.title("Diabetes Features Correlation")
             st.pyplot(fig)
         
-        with tab3:
+        elif condition2 == "Heart Disease" & condition3 == "Logistic Regression":
             fig, ax = plt.subplots(figsize=(10, 8))
             selected_features = ['Age', 'RestingBP', 'Cholesterol', 'HeartDisease']
             sns.heatmap(heart[selected_features].corr(), annot=True, cmap='coolwarm')
             plt.title("Heart Disease Features Correlation")
             st.pyplot(fig)
         
-        with tab4:
+        elif condition2 == "Diabetes" & condition3 == "Logistic Regression":
             fig, ax = plt.subplots(figsize=(10, 8))
             selected_features = ['AGE', 'SMOKING', 'YELLOW_FINGERS', 'ANXIETY', 'LUNG_CANCER']
             sns.heatmap(lung[selected_features].corr(), annot=True, cmap='coolwarm')
