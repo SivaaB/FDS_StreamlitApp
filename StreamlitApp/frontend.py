@@ -136,7 +136,7 @@ if condition == "Overview":
         # Breast Cancer
         sns.countplot(data=breast_cancer, x='diagnosis', ax=ax1, hue='diagnosis', 
                      palette=['lightblue', 'salmon'], legend=False)
-       ax1.set_title("Breast Cancer Cases (0=Benign, 1=Malignant)")
+        ax1.set_title("Breast Cancer Cases (0=Benign, 1=Malignant)")
         
         # Diabetes
         sns.countplot(data=diabetes, x='diabetes', ax=ax2, hue='diabetes',
