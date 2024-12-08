@@ -127,34 +127,34 @@ condition = st.sidebar.selectbox(
 if condition == "Overview":
     st.header("Health Risk Statistics")
     
-    # col1, col2 = st.columns(2)
+    col1, col2 = st.columns(2)
     
-    # with col1:
-    #   st.subheader("Disease Distribution Across Datasets")
-    #    fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(12, 12))
+    with col1:
+        st.subheader("Disease Distribution Across Datasets")
+        fig, ((ax1, ax2), (ax3, ax4)) = plt.subplots(2, 2, figsize=(12, 12))
         
         # Breast Cancer
-    #    sns.countplot(data=breast_cancer, x='diagnosis', ax=ax1, hue='diagnosis', 
-    #                 palette=['lightblue', 'salmon'], legend=False)
-    #   ax1.set_title("Breast Cancer Cases (0=Benign, 1=Malignant)")
+        sns.countplot(data=breast_cancer, x='diagnosis', ax=ax1, hue='diagnosis', 
+                     palette=['lightblue', 'salmon'], legend=False)
+       ax1.set_title("Breast Cancer Cases (0=Benign, 1=Malignant)")
         
         # Diabetes
-    #    sns.countplot(data=diabetes, x='diabetes', ax=ax2, hue='diabetes',
-    #                 palette=['lightblue', 'salmon'], legend=False)
-    #    ax2.set_title("Diabetes Cases")
+        sns.countplot(data=diabetes, x='diabetes', ax=ax2, hue='diabetes',
+                     palette=['lightblue', 'salmon'], legend=False)
+        ax2.set_title("Diabetes Cases")
         
         # Heart Disease
-     #   sns.countplot(data=heart, x='HeartDisease', ax=ax3, hue='HeartDisease',
-     #                palette=['lightblue', 'salmon'], legend=False)
-     #   ax3.set_title("Heart Disease Cases")
+        sns.countplot(data=heart, x='HeartDisease', ax=ax3, hue='HeartDisease',
+                     palette=['lightblue', 'salmon'], legend=False)
+        ax3.set_title("Heart Disease Cases")
         
         # Lung Cancer
-      #  sns.countplot(data=lung, x='LUNG_CANCER', ax=ax4, hue='LUNG_CANCER',
-      #               palette=['lightblue', 'salmon'], legend=False)
-      #  ax4.set_title("Lung Cancer Cases")
+        sns.countplot(data=lung, x='LUNG_CANCER', ax=ax4, hue='LUNG_CANCER',
+                     palette=['lightblue', 'salmon'], legend=False)
+        ax4.set_title("Lung Cancer Cases")
         
-       # plt.tight_layout()
-       # st.pyplot(fig)
+        plt.tight_layout()
+        st.pyplot(fig)
     
     with col2:
         st.subheader("Risk Factors Analysis")
